@@ -16,3 +16,19 @@
 """
 
 mac = "AAAA:BBBB:CCCC"
+
+#2nd attemp
+result = bin(int(mac.replace(":", ""), 16)).lstrip('0b')
+print(result)
+
+#1st attemp
+"""
+mac1_hex = bin(int(mac[0:2], 16)).lstrip('0b')
+mac2_hex = bin(int(mac[2:4], 16)).lstrip('0b')
+mac3_hex = bin(int(mac[5:7], 16)).lstrip('0b')
+mac4_hex = bin(int(mac[7:9], 16)).lstrip('0b')
+mac5_hex = bin(int(mac[10:12], 16)).lstrip('0b')
+mac6_hex = bin(int(mac[12:14], 16)).lstrip('0b')
+mac2 = ''.join([mac1_hex, mac2_hex, mac3_hex, mac4_hex, mac5_hex, mac6_hex])
+print(mac2)
+"""

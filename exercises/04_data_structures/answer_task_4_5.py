@@ -23,9 +23,8 @@
 command1 = "switchport trunk allowed vlan 1,2,3,5,8"
 command2 = "switchport trunk allowed vlan 1,3,8,9"
 
-vlans_command1 = set(command1.split()[-1].split(',')) #делим стринг по пробелам, последнию часть делим по запятой, создаем множество)
-vlans_command2 = set(command2.split()[-1].split(',')) #делим стринг по пробелам, последнию часть делим по запятой, создаем множество)
+vlans1 = command1.split()[-1].split(",")
+vlans2 = command2.split()[-1].split(",")
 
-result = sorted(vlans_command1 & vlans_command2) #ищем пересечения множеств и сортируем их создавая список
-
+result = sorted(set(vlans1) & set(vlans2))
 print(result)
