@@ -31,7 +31,7 @@ Out[1]: '11111111111111111111111111110000'
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
 
-# 2nd try
+#1st try
 #INPUT
 network = input('Enter netwrok (X.X.X.X/XX):')
 network_list = network.split('/')
@@ -46,24 +46,22 @@ act4 = int(act4)
 #MASK
 mask = int(network_list[1])
 mask_str = "1" * mask + "0" * ( 32 - mask)
-mask_act1 = int(mask_str[0:8], 2)
-mask_act2 = int(mask_str[8:16], 2)
-mask_act3 = int(mask_str[16:24], 2)
-mask_act4 = int(mask_str[24:32], 2)
+mask_act1 = mask_str[0:8]
+mask_act2 = mask_str[8:16]
+mask_act3 = mask_str[16:24]
+mask_act4 = mask_str[24:32]
 
 #OUTPUT
 network_template= """
 Network:
 {0:<8} {1:<8} {2:<8} {3:<8}
 {0:>08b}  {1:>08b}  {2:>08b}  {3:>08b}
-"""
-mask_template= """
+
 Mask:
-/{0}
-{1:<8} {2:<8} {3:<8} {4:<8}
-{1:<08b}  {2:<08b}  {3:<08b}  {4:<08b}
+/{4}
+{9:<8} {10:<8} {11:<8} {12:<8}
+{5:<8}  {6:<8}  {7:<8}  {8:<8}
 
 """
-print(network_template.format(act1, act2, act3, act4))
-print(mask_template.format(mask, mask_act1, mask_act2, mask_act3, mask_act4))
-
+print(network_template.format(act1, act2, act3, act4, mask, mask_act1, mask_act2, mask_act3, mask_act4,
+      int(mask_act1, 2), int(mask_act2, 2), int(mask_act3, 2), int(mask_act4, 2)))

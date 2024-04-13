@@ -45,14 +45,7 @@ london_co = {
     },
 }
 
-device = input('Enter device name: ')
-option = input('Enter option: ')
+device = input("Введите имя устройства: ")
+parameter = input("Введите имя параметра: ")
 
-print(london_co[device][option])
-
-
-
-
-
-
-
+print(london_co[device][parameter])

@@ -43,3 +43,14 @@ london_co = {
         "routing": True,
     },
 }
+
+device = input('Enter device name: ')
+options_list = ', '.join(london_co[device].keys())
+option = input(f"Enter option ({options_list}): ").lower()      #when we use f (F) in string we can put var in {}, option.lower() make str low case.
+
+
+print(london_co[device].get(option, 'параметра нет'))   #проверка есть ли такой параметр
+
+
+
+

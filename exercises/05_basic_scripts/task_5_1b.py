@@ -50,3 +50,40 @@ london_co = {
         "routing": True,
     },
 }
+"""
+1st try
+
+#input device
+device = input('Enter device name: ')                       #name of device
+
+#operation with text to input option
+option_list = list(london_co[device])                       #list keys of input device
+text = ['Enter option (', ', '.join(option_list), '): ']    #list of text message to imput
+text = ''.join(text)                                        #make string of text message to imput
+
+#input option
+option = input(text)                                        #just input option with str text
+
+#output devtce+option
+print(london_co[device][option])
+"""
+
+#2nd try
+
+#input device
+device = input('Enter device name: ')
+#operation with text to input option
+options_list = ', '.join(london_co[device].keys())
+#input option
+option = input(f"Enter option ({options_list}): ")      #when we use f (F) in string we can put var in {}
+
+#output devtce+option
+print(london_co[device][option])
+
+
+
+
+
+
+
+

@@ -50,10 +50,8 @@ london_co = {
     },
 }
 
-device = input('Enter device name: ')
-options_list = ', '.join(london_co[device].keys())
-option = input(f"Enter option ({options_list}): ")      #when we use f (F) in string we can put var in {}
+device = input("Введите имя устройства: ")
+params = ", ".join(london_co[device].keys())
+parameter = input(f"Введите имя параметра ({params}): ")
 
-print(london_co[device].get(option, 'параметра нет'))   #проверка есть ли такой параметр
-
-
+print(london_co[device].get(parameter, "Такого параметра нет"))
