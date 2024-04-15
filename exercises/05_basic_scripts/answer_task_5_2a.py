@@ -25,16 +25,8 @@ Mask:
 255       255       255       0
 11111111  11111111  11111111  00000000
 
-
 Проверить работу скрипта на разных комбинациях хост/маска, например:
     10.0.5.195/28, 10.0.1.1/24
-
-Вывод сети и маски должен быть упорядочен также, как в примере:
-- столбцами
-- ширина столбца 10 символов (в двоичном формате
-  надо добавить два пробела между столбцами
-  для разделения октетов между собой)
-
 
 Подсказка:
 Есть адрес хоста в двоичном формате и маска сети 28. Адрес сети это первые 28 бит
@@ -50,72 +42,47 @@ bin_ip = "00001010000000010000000111000011"
 
 """
 
-#network ip calc
+network = input("Введите адрес сети: ")
 
-#INPUT
-network = input('Enter IP and Mask (X.X.X.X/XX):')
-network_list = network.split('/')
+ip, mask = network.split("/")
+ip_list = ip.split(".")
+mask = int(mask)
 
-#IP
-act1, act2, act3, act4 = network_list[0].split('.')
-act1 = int(act1)
-act2 = int(act2)
-act3 = int(act3)
-act4 = int(act4)
-ip_str_bin = '{:08b}{:08b}{:08b}{:08b}'.format(act1, act2, act3, act4)
+oct1, oct2, oct3, oct4 = [
+    int(ip_list[0]),
+    int(ip_list[1]),
+    int(ip_list[2]),
+    int(ip_list[3]),
+]
+bin_ip_str = "{:08b}{:08b}{:08b}{:08b}".format(oct1, oct2, oct3, oct4)
+bin_network_str = bin_ip_str[:mask] + "0" * (32 - mask)
 
-#MASK
-mask = int(network_list[1])
-mask_str = "1" * mask + "0" * ( 32 - mask)
-mask_act1 = int(mask_str[0:8], 2)
-mask_act2 = int(mask_str[8:16], 2)
-mask_act3 = int(mask_str[16:24], 2)
-mask_act4 = int(mask_str[24:32], 2)
+net1, net2, net3, net4 = [
+    int(bin_network_str[0:8], 2),
+    int(bin_network_str[8:16], 2),
+    int(bin_network_str[16:24], 2),
+    int(bin_network_str[24:32], 2),
+]
 
-#calc netowrk
-net_ip = ip_str_bin[0 : mask] + "0" * (32 - mask)
-net_act1 = int(net_ip[0:8], 2)
-net_act2 = int(net_ip[8:16], 2)
-net_act3 = int(net_ip[16:24], 2)
-net_act4 = int(net_ip[24:32], 2)
+bin_mask = "1" * mask + "0" * (32 - mask)
+m1, m2, m3, m4 = [
+    int(bin_mask[0:8], 2),
+    int(bin_mask[8:16], 2),
+    int(bin_mask[16:24], 2),
+    int(bin_mask[24:32], 2),
+]
 
-
-#OUTPUT
-network_template= """
+ip_output = """
 Network:
-{0:<8} {1:<8} {2:<8} {3:<8}
-{0:>08b}  {1:>08b}  {2:>08b}  {3:>08b}
-"""
-mask_template= """
+{0:<8}  {1:<8}  {2:<8}  {3:<8}
+{0:08b}  {1:08b}  {2:08b}  {3:08b}"""
+
+mask_output = """
 Mask:
 /{0}
-{1:<8} {2:<8} {3:<8} {4:<8}
-{1:<08b}  {2:<08b}  {3:<08b}  {4:<08b}
-
+{1:<8}  {2:<8}  {3:<8}  {4:<8}
+{1:08b}  {2:08b}  {3:08b}  {4:08b}
 """
-print(network_template.format(net_act1, net_act2, net_act3, net_act4))
-print(mask_template.format(mask, mask_act1, mask_act2, mask_act3, mask_act4))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print(ip_output.format(net1, net2, net3, net4))
+print(mask_output.format(mask, m1, m2, m3, m4))
