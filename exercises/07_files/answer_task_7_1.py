@@ -14,18 +14,18 @@ Outbound Interface    FastEthernet0/0
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
-#solution 1
 
-route_template =  """
-Prefix                {}
-AD/Metric             {}
-Next-Hop              {}
-Last update           {}
-Outbound Interface    {}
-"""
+output = "\n{:25} {}" * 5
 
-with open('/home/anton_k/repos/my-python-exercises/exercises/07_files/ospf.txt', 'r') as f:
-    for l in f:
-        l_list = l.replace('[', '').replace(']', '').replace(',', '')
-        l_list = l_list.split()
-        print(route_template.format(l_list[1], l_list[2], l_list[4], l_list[5], l_list[6]))
+with open("/home/anton_k/repos/my-python-exercises/exercises/07_files/ospf.txt", "r") as f:
+    for line in f:
+        route = line.replace(",", " ").replace("[", "").replace("]", "")
+        route = route.split()
+
+        print(output.format(
+                "Prefix", route[1],
+                "AD/Metric", route[2],
+                "Next-Hop", route[4],
+                "Last update", route[5],
+                "Outbound Interface", route[6],
+        ))

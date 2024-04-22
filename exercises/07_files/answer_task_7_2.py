@@ -39,12 +39,11 @@ interface Ethernet0/3
 ...
 
 """
-#solution
-from sys import argv #enter arg1 via CLI
+from sys import argv
 
-path = '/home/anton_k/repos/my-python-exercises/exercises/07_files/' + argv[1]
+filename = argv[1]
 
-with open(path, 'r') as f:
+with open(filename) as f:
     for line in f:
-        if not line.startswith('!'):  
+        if not line.startswith("!"):
             print(line.rstrip())

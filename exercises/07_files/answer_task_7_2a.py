@@ -15,34 +15,16 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+from sys import argv
 
 ignore = ["duplex", "alias", "configuration"]
 
+filename = argv[1]
 
-#solution 1 - hardcode of ignore
-"""
-from sys import argv #enter arg1 via CLI
-
-path = '/home/anton_k/repos/my-python-exercises/exercises/07_files/' + argv[1]
-
-with open(path, 'r') as f:
+with open(filename) as f:
     for line in f:
-        if line.startswith('!') or line.count(ignore[0]) >= 1 or line.count(ignore[1]) >= 1 or line.count(ignore[2]) >= 1 :
-            continue
-        else:
+        words = line.split()
+        words_intersect = set(words) & set(ignore)
+        if not line.startswith("!") and not words_intersect:
             print(line.rstrip())
-"""
 
-#solution 2
-from sys import argv #enter arg1 via CLI
-
-path = '/home/anton_k/repos/my-python-exercises/exercises/07_files/' + argv[1]
-
-with open(path, 'r') as f:
-    for line in f:
-        check_lintersection = line.split()
-        check_lintersection = set(check_lintersection) & set(ignore)
-        if line.startswith('!') or check_lintersection:
-            continue
-        else:
-            print(line.rstrip())

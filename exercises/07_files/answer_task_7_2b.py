@@ -15,20 +15,15 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+from sys import argv
 
 ignore = ["duplex", "alias", "configuration"]
 
-#solution
-from sys import argv #enter arg1 via CLI
+src_file, dst_file = argv[1], argv[2]
 
-path = '/home/anton_k/repos/my-python-exercises/exercises/07_files/' + argv[1]
-new_path = argv[2]
-
-with open(path, 'r') as src, open (new_path, 'w') as dst :
+with open(src_file) as src, open(dst_file, 'w') as dst:
     for line in src:
-        check_lintersection = line.split()
-        check_lintersection = set(check_lintersection) & set(ignore)
-        if line.startswith('!') or check_lintersection:
-            continue
-        else:
+        words = line.split()
+        words_intersect = set(words) & set(ignore)
+        if not line.startswith("!") and not words_intersect:
             dst.write(line)
