@@ -20,13 +20,10 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
-result = '{:<8}{:<16}{:<12}'
 
-with open ('/home/anton_k/repos/my-python-exercises/exercises/07_files/CAM_table.txt', 'r') as f:
-    for line in f:
-        line_list = line.split()
-        if line_list and line_list[0].isdigit():
-            vlan = line_list[0]
-            mac = line_list[1]
-            port = line_list[3]
-            print(result.format(vlan, mac, port))
+with open("CAM_table.txt") as conf:
+    for line in conf:
+        words = line.split()
+        if words and words[0].isdigit():
+            vlan, mac, _, interface = words
+            print(f"{vlan:9}{mac:20}{interface}")

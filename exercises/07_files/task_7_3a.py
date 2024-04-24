@@ -40,3 +40,14 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+table = []
+
+with open ('/home/anton_k/repos/my-python-exercises/exercises/07_files/CAM_table.txt', 'r') as f:
+    for line in f:
+        line_list = line.split()
+        if line_list and line_list[0].isdigit():
+            line_list = int(line_list[0]), line_list[1], line_list[3]
+            table.append(list(line_list))
+    table = sorted(table)
+    for t in table:
+        print(f'{t[0]:<8}{t[1]:<16}{t[2]:<12}')
